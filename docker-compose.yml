@@ -1,0 +1,20 @@
+services:
+  goapp:
+    build: .
+    volumes:
+      - .:/app
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: orders
+      MYSQL_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_HOST: localhost
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+volumes:
+  mysql-data:
