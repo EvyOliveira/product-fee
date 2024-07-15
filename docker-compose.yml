@@ -3,6 +3,8 @@ services:
     build: .
     volumes:
       - .:/app
+    ports:
+      - "8181:8181"
 
   mysql:
     image: mysql:8.0
