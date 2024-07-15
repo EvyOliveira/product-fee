@@ -3,8 +3,8 @@ package entity
 import "errors"
 
 type OrderRepositoryInterface interface {
-	GetTotal() (int, error)
 	Save(order *Order) error
+	GetTotal() (int, error)
 }
 
 type Order struct {
