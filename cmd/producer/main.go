@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 
 	"github.com/google/uuid"
@@ -42,19 +43,19 @@ func Notify(ch *amqp.Channel, order Order) error {
 func main() {
 	conn, err := amqp.Dial("amqp://guest:guest@rabbitmq:5672/")
 	if err != nil {
-		panic(err)
+		log.Fatal("unable to establish connection with rabbitmq: ", err)
 	}
 	defer conn.Close()
 	ch, err := conn.Channel()
 	if err != nil {
-		panic(err)
+		log.Fatal("unable to open a channel with rabbitmq: ", err)
 	}
 	defer ch.Close()
 	for i := 0; i < 100; i++ {
 		order := GenerateOrders()
 		err := Notify(ch, order)
 		if err != nil {
-			panic(err)
+			log.Fatal("there was a problem generating request message in rabbitmq: ", err)
 		}
 		fmt.Println(order)
 	}
