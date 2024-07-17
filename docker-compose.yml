@@ -3,6 +3,8 @@ services:
     build: .
     volumes:
       - .:/app
+    ports:
+      - "8181:8181"
 
   mysql:
     image: mysql:8.0
@@ -13,7 +15,7 @@ services:
       MYSQL_DATABASE: orders
       MYSQL_PASSWORD: root
       MYSQL_USER: user
-      MYSQL_HOST: localhost
+      MYSQL_HOST: mysql
     volumes:
       - ./.docker/mysql:/var/lib/mysql
       

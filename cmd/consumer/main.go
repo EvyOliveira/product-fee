@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
 	"sync"
 	"time"
 
@@ -17,7 +18,7 @@ import (
 
 func main() {
 	maxWorkers := 3
-	wg := sync.WaitGroup{}
+	waitGroup := sync.WaitGroup{}
 
 	dbDriver := "mysql"
 	dbUser := "user"
@@ -30,9 +31,19 @@ func main() {
 	}
 	fmt.Println("successfully connected to database!")
 	defer db.Close()
-
 	repository := database.NewOrderRepository(db)
 	uc := usecase.NewCalculateFinalPriceUseCase(repository)
+
+	http.HandleFunc("/total", func(w http.ResponseWriter, r *http.Request) {
+		uc := usecase.NewGetTotalUseCase(repository)
+		output, err := uc.Execute()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		json.NewEncoder(w).Encode(output)
+	})
+	go http.ListenAndServe(":8181", nil)
 
 	ch, err := rabbitmq.OpenChannel()
 	if err != nil {
@@ -42,12 +53,16 @@ func main() {
 	out := make(chan amqp.Delivery)
 	go rabbitmq.Consume(ch, out)
 
-	wg.Add(maxWorkers)
 	for i := 0; i < maxWorkers; i++ {
-		defer wg.Done()
-		go worker(out, uc, i)
+		waitGroup.Add(1)
+		i := i
+		go func() {
+			fmt.Println("starting worker", i)
+			defer waitGroup.Done()
+			worker(out, uc, i)
+		}()
 	}
-	wg.Wait()
+	waitGroup.Wait()
 }
 
 func worker(deliveryMessage <-chan amqp.Delivery, uc *usecase.CalculateFinalPriceUseCase, workerId int) {
