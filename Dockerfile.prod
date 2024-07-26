@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . .
 
+RUN go install sigs.k8s.io/kind@v0.23.0
 RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o server -ldflags="-w -s" cmd/webserver/main.go
 
 FROM scratch
