@@ -25,7 +25,7 @@ func main() {
 	dbPassword := "root"
 	dbName := "orders"
 
-	db, err := sql.Open(dbDriver, dbUser+":"+dbPassword+"@tcp(172.22.0.1:3306)/"+dbName)
+	db, err := sql.Open(dbDriver, dbUser+":"+dbPassword+"@tcp(mysql:3306)/"+dbName)
 	if err != nil {
 		log.Fatal("error pinging database:", err)
 	}
