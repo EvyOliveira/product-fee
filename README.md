@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img src="product-fee.svg" height="150" width="175" alt="product-fee" />
+    <img src="product-fee.svg" height="350" width="500" alt="product-fee" />
   </a>
 </p>
 <p align='center'>
@@ -27,6 +27,7 @@
 </a>
 </a>
 </p>
+<br />
 
 ## 💻 Project Description
 
