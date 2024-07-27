@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img src="product-fee.svg" height="350" width="500" alt="product-fee" />
+    <img src="product-fee.svg" height="250" width="500" alt="product-fee" />
   </a>
 </p>
 <p align='center'>
