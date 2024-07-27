@@ -11,14 +11,11 @@ func OpenChannel() (*amqp.Channel, error) {
 	if err != nil {
 		log.Fatal("unable to establish connection with rabbitmq: ", err)
 	}
-	defer conn.Close()
 	ch, err := conn.Channel()
+	ch.Qos(100, 0, false)
 	if err != nil {
 		log.Fatal("unable to open a channel with rabbitmq: ", err)
 	}
-	defer ch.Close()
-
-	ch.Qos(100, 0, false)
 	return ch, nil
 }
 
