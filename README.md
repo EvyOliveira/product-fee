@@ -4,25 +4,25 @@
   </a>
 </p>
 <p align='center'>
- <a href="#">
+ <a href="https://go.dev/">
     <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" />
   </a>
-  <a href="#">
+  <a href="https://kubernetes.io/pt-br/docs/tasks/tools/install-kubectl-linux/#instale-usando-o-gerenciador-de-pacotes-nativo">
   <img src="https://img.shields.io/badge/kubernetes-326ce5.svg?&style=for-the-badge&logo=kubernetes&logoColor=white">
   </a>
-  <a href="#">
+  <a href="https://www.mysql.com/downloads/">
   <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white">
   </a>
-  <a href="#">
+  <a href="https://www.rabbitmq.com/docs/download">
   <img src="https://img.shields.io/badge/rabbitmq-%23FF6600.svg?&style=for-the-badge&logo=rabbitmq&logoColor=white">
    </a>
-  <a href="#">
+  <a href="https://www.docker.com/">
   <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white">
    </a>
-  <a href="#">
+  <a href="https://grafana.com/grafana/download">
   <img src="https://img.shields.io/badge/Grafana-F2F4F9?style=for-the-badge&logo=grafana&logoColor=orange&labelColor=F2F4F9">
    </a>
-  <a href="#">
+  <a href="https://prometheus.io/download/">
   <img src="https://img.shields.io/badge/Prometheus-000000?style=for-the-badge&logo=prometheus&labelColor=000000">
 </a>
 </a>
@@ -116,12 +116,9 @@ $ kubectl port-forward svc/goservice 8080:8080
 
 ---
 
-## 🛠 Technologies
-
-The following tools were used during the development of the project:
-([Go](https://go.dev/) + WSL2 + [Docker](https://www.docker.com/) + [Kubernetes](https://kubernetes.io/pt-br/docs/tasks/tools/install-kubectl-linux/#instale-usando-o-gerenciador-de-pacotes-nativo) + [MySQL](https://www.mysql.com/downloads/) + [RabbitMQ](https://www.rabbitmq.com/docs/download) + [Grafana](https://grafana.com/grafana/download) + [Prometheus](https://prometheus.io/download/))
-<br>
-
+## 🛠 Improvements
+- Applying retry and resilience strategies to the message queue;
+- Perform unit and integrated tests.
 ---
 
 ## 🦸 Author
